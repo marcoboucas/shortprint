@@ -4,7 +4,7 @@ from typing import Any
 
 import pytest
 
-from dprint.typeprint import add_padding, get_type, typeprint_str
+from dbprint.typeprint import add_padding, get_type, typeprint_str
 
 
 @pytest.mark.parametrize(
