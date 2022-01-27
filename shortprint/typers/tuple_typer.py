@@ -1,4 +1,4 @@
-"""List typer."""
+"""Tuple typer."""
 
 from collections import defaultdict
 from typing import Any, Callable, Tuple
