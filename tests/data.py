@@ -17,4 +17,17 @@ TESTS_FOR_STANDARD = [
 ]
 
 
-ALL_TESTS = [TESTS_FOR_LIST, TESTS_FOR_STANDARD]
+TEST_FOR_DICT = [
+    ({"hello": "world"}, "Dict[\n  (1) str: str\n]\n"),
+    ({"hello": "world", "bonjour": "monde"}, "Dict[\n  (2) str: str\n]\n"),
+    ({1: "world"}, "Dict[\n  (1) int: str\n]\n"),
+    ({1: "world", 0: "hello"}, "Dict[\n  (2) int: str\n]\n"),
+    (
+        {1: ["world"], 0: "h"},
+        "Dict[\n  (1) int: List[\n    (1)str\n  ]\n  (1) int: str\n]\n",
+    ),
+    ({}, "Dict[]\n"),
+]
+
+
+ALL_TESTS = [TESTS_FOR_LIST, TESTS_FOR_STANDARD, TEST_FOR_DICT]

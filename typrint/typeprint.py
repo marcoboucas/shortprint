@@ -1,9 +1,10 @@
 """TypePrint."""
 
+from reprlib import recursive_repr
 from typing import Any
 
 from typrint.config import PADDING
-from typrint.typers import type_list
+from typrint.typers import type_list, type_dict
 from typrint.utils import add_padding, get_type
 
 
@@ -16,6 +17,13 @@ def typeprint_str(
         return add_padding(type_, current_padding)
     if isinstance(element, list):
         return type_list(
+            element=element,
+            recursive_func=typeprint_str,
+            current_padding=current_padding,
+            padding_increment=padding_increment,
+        )
+    if isinstance(element, dict):
+        return type_dict(
             element=element,
             recursive_func=typeprint_str,
             current_padding=current_padding,
