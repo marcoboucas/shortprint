@@ -1,4 +1,4 @@
-package_name = dprint
+package_name = typrint
 lint:
 	python -m pylint $(package_name)
 	python -m mypy $(package_name)
@@ -26,6 +26,7 @@ package: clean-package
 	python setup.py sdist bdist_wheel
 
 ship-test:
+	pip install twine --quiet
 	python -m twine upload --repository testpypi dist/*
 
 ship:

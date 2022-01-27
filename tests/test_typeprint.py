@@ -1,14 +1,18 @@
 """Test typeprint.py file."""
 
+from itertools import chain
 from typing import Any
 
 import pytest
 
-from dprint.typeprint import typeprint_str
+from typrint.typeprint import typeprint_str
+
+from .data import ALL_TESTS
 
 
 @pytest.mark.parametrize(
-    "test_input,expected", [(1, "int"), (-1, "int"), (1.2, "float"), ("2", "str")]
+    "test_input,expected",
+    list(chain(*ALL_TESTS)),
 )
 def test_typeprint(test_input: Any, expected: str):
     """Test the typeprint_str() function."""
