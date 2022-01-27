@@ -13,7 +13,7 @@ def type_dict(
     current_padding: str,
     padding_increment: int,
 ) -> str:
-    """Type for a list."""
+    """Type for a dict."""
 
     # Empty dict
     if len(element) == 0:
