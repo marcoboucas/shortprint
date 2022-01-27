@@ -4,7 +4,7 @@ from dataclasses import is_dataclass
 from typing import Any
 
 from shortprint.config import PADDING
-from shortprint.typers import type_dataclass, type_dict, type_list
+from shortprint.typers import type_dataclass, type_dict, type_list, type_tuple
 from shortprint.utils import add_padding, get_type
 
 
@@ -15,6 +15,14 @@ def shortprint_str(
     type_ = get_type(element)
     if isinstance(element, (str, int, float)):
         return add_padding(type_, current_padding)
+
+    if isinstance(element, tuple):
+        return type_tuple(
+            element=element,
+            recursive_func=shortprint_str,
+            current_padding=current_padding,
+            padding_increment=padding_increment,
+        )
     if isinstance(element, list):
         return type_list(
             element=element,

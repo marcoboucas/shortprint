@@ -1,14 +1,14 @@
 """Tuple typer."""
 
 from collections import defaultdict
-from typing import Any, Callable, Tuple
+from typing import Callable
 
 from shortprint.utils import add_padding, get_type
 
 
 def type_tuple(
     *,
-    element: Tuple[Any],
+    element: tuple,
     recursive_func: Callable,
     current_padding: str,
     padding_increment: int,
