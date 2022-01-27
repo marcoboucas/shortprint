@@ -1,7 +1,8 @@
 """Dict typer."""
-
+# pylint: disable=R0914
 from collections import defaultdict
 from typing import Any, Callable, Dict, List
+
 from typrint.utils import add_padding, get_type
 
 
@@ -47,9 +48,11 @@ def type_dict(
     context_text = ""
 
     for flatten_ele in flatten_dict:
-        context_text += f"({len(flatten_ele)}) \
-            {flatten_ele[0]['key_type'][:-1]}: \
-                {flatten_ele[0]['value_type'][:-1]}\n"
+        to_add = (
+            f"({len(flatten_ele)}) {flatten_ele[0]['key_type'][:-1]}"
+            f": {flatten_ele[0]['value_type'][:-1]}\n"
+        )
+        context_text += to_add
 
     return (
         add_padding("Dict[", current_padding)
