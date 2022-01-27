@@ -1,6 +1,5 @@
 """TypePrint."""
 
-from reprlib import recursive_repr
 from typing import Any
 
 from typrint.config import PADDING

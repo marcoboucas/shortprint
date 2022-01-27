@@ -1,7 +1,6 @@
-"""List typer."""
+"""Dict typer."""
 
 from collections import defaultdict
-from email.policy import default
 from typing import Any, Callable, Dict, List
 from typrint.utils import add_padding, get_type
 
@@ -48,7 +47,9 @@ def type_dict(
     context_text = ""
 
     for flatten_ele in flatten_dict:
-        context_text += f"({len(flatten_ele)}) {flatten_ele[0]['key_type'][:-1]}: {flatten_ele[0]['value_type'][:-1]}\n"
+        context_text += f"({len(flatten_ele)}) \
+            {flatten_ele[0]['key_type'][:-1]}: \
+                {flatten_ele[0]['value_type'][:-1]}\n"
 
     return (
         add_padding("Dict[", current_padding)

@@ -1,4 +1,4 @@
-"""Init."""
+"""Init typers."""
 
 from .list_typer import type_list
 from .dict_typer import type_dict
