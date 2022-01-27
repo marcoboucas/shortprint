@@ -45,17 +45,6 @@ def type_dict(
         )
         context_text += to_add
 
-    print(
-        (
-            add_padding("Dict[", current_padding)
-            + add_padding(
-                context_text,
-                current_padding + padding_increment * " ",
-            )
-            + add_padding("]", current_padding)
-        )
-    )
-
     return (
         add_padding("Dict[", current_padding)
         + add_padding(
