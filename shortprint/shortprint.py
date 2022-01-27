@@ -3,12 +3,12 @@
 from dataclasses import is_dataclass
 from typing import Any
 
-from typrint.config import PADDING
-from typrint.typers import type_dataclass, type_dict, type_list
-from typrint.utils import add_padding, get_type
+from shortprint.config import PADDING
+from shortprint.typers import type_dataclass, type_dict, type_list
+from shortprint.utils import add_padding, get_type
 
 
-def typeprint_str(
+def shortprint_str(
     element: Any, current_padding: str = "", padding_increment: int = PADDING
 ) -> str:
     """Typeprint an element to string."""
@@ -18,21 +18,21 @@ def typeprint_str(
     if isinstance(element, list):
         return type_list(
             element=element,
-            recursive_func=typeprint_str,
+            recursive_func=shortprint_str,
             current_padding=current_padding,
             padding_increment=padding_increment,
         )
     if isinstance(element, dict):
         return type_dict(
             element=element,
-            recursive_func=typeprint_str,
+            recursive_func=shortprint_str,
             current_padding=current_padding,
             padding_increment=padding_increment,
         )
     if is_dataclass(element):
         return type_dataclass(
             element=element,
-            recursive_func=typeprint_str,
+            recursive_func=shortprint_str,
             current_padding=current_padding,
             padding_increment=padding_increment,
         )
@@ -40,6 +40,6 @@ def typeprint_str(
     return f"Unknown Type ({element.__class__.__name__})"
 
 
-def typeprint(*args, **kwargs) -> None:
+def shortprint(*args, **kwargs) -> None:
     """Typeprint an element."""
-    print(typeprint_str(*args, **kwargs))
+    print(shortprint_str(*args, **kwargs))

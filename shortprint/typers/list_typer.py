@@ -3,7 +3,7 @@
 from collections import defaultdict
 from typing import Any, Callable, List
 
-from typrint.utils import add_padding, get_type
+from shortprint.utils import add_padding, get_type
 
 
 def type_list(

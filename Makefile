@@ -1,4 +1,4 @@
-package_name = typrint
+package_name = shortprint
 lint:
 	python -m pylint $(package_name)
 	python -m mypy $(package_name)

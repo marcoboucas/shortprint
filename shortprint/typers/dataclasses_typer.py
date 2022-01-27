@@ -2,7 +2,7 @@
 
 from typing import Any, Callable
 
-from typrint.utils import add_padding
+from shortprint.utils import add_padding
 
 
 def type_dataclass(

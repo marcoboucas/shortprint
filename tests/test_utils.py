@@ -4,7 +4,7 @@ from typing import Any
 
 import pytest
 
-from typrint.utils import add_padding, get_type
+from shortprint.utils import add_padding, get_type
 
 
 @pytest.mark.parametrize(
