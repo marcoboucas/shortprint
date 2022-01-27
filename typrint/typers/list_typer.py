@@ -28,7 +28,7 @@ def type_list(
         map(lambda x: x[1], sorted(list(counter.items()), key=lambda x: x[0]))
     )
     content_text = "\n".join(
-        [f"({len(sons)}){recursive_func(sons[0])[:-1]}" for sons in counter_values]
+        [f"({len(sons)}) {recursive_func(sons[0])[:-1]}" for sons in counter_values]
     )
     return (
         add_padding("List[", current_padding)
