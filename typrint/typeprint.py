@@ -2,9 +2,9 @@
 
 from typing import Any
 
-from dbprint.config import PADDING
-from dbprint.typers import type_list
-from dbprint.utils import add_padding, get_type
+from typrint.config import PADDING
+from typrint.typers import type_list
+from typrint.utils import add_padding, get_type
 
 
 def typeprint_str(

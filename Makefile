@@ -1,4 +1,4 @@
-package_name = dbprint
+package_name = typrint
 lint:
 	python -m pylint $(package_name)
 	python -m mypy $(package_name)
