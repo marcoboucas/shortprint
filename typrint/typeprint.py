@@ -1,9 +1,10 @@
 """TypePrint."""
 
+from dataclasses import is_dataclass
 from typing import Any
 
 from typrint.config import PADDING
-from typrint.typers import type_list
+from typrint.typers import type_dataclass, type_list
 from typrint.utils import add_padding, get_type
 
 
@@ -21,10 +22,17 @@ def typeprint_str(
             current_padding=current_padding,
             padding_increment=padding_increment,
         )
+    if is_dataclass(element):
+        return type_dataclass(
+            element=element,
+            recursive_func=typeprint_str,
+            current_padding=current_padding,
+            padding_increment=padding_increment,
+        )
 
-    return "Unknown Type"
+    return f"Unknown Type ({element.__class__.__name__})"
 
 
 def typeprint(*args, **kwargs) -> None:
     """Typeprint an element."""
-    print("\n".join(typeprint_str(*args, **kwargs)))
+    print(typeprint_str(*args, **kwargs))
