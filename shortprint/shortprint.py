@@ -1,19 +1,26 @@
 """TypePrint."""
 
 from dataclasses import is_dataclass
+from datetime import date, datetime, timedelta
 from typing import Any
 
 from shortprint.config import PADDING
 from shortprint.typers import type_dataclass, type_dict, type_list, type_tuple
 from shortprint.typers.set_typer import type_set
+from shortprint.typers.object_typer import type_object
 from shortprint.utils import add_padding, get_type
 
 
+# pylint: disable=too-many-return-statements
 def shortprint_str(
     element: Any, current_padding: str = "", padding_increment: int = PADDING
 ) -> str:
     """Typeprint an element to string."""
     type_ = get_type(element)
+    if element is None:
+        return add_padding("None", current_padding)
+    if isinstance(element, (str, int, float, date, datetime, timedelta, bytes)):
+        return add_padding(type_, current_padding)
 
     if isinstance(element, tuple):
         return type_tuple(
@@ -51,7 +58,12 @@ def shortprint_str(
             padding_increment=padding_increment,
         )
 
-    return add_padding(type_, current_padding)
+    return type_object(
+        element=element,
+        recursive_func=shortprint_str,
+        current_padding=current_padding,
+        padding_increment=padding_increment,
+    )
 
 
 def shortprint(*args, **kwargs) -> None:
