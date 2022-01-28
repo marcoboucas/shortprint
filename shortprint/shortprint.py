@@ -5,6 +5,7 @@ from typing import Any
 
 from shortprint.config import PADDING
 from shortprint.typers import type_dataclass, type_dict, type_list, type_tuple
+from shortprint.typers.set_typer import type_set
 from shortprint.utils import add_padding, get_type
 
 
@@ -30,6 +31,13 @@ def shortprint_str(
         )
     if isinstance(element, dict):
         return type_dict(
+            element=element,
+            recursive_func=shortprint_str,
+            current_padding=current_padding,
+            padding_increment=padding_increment,
+        )
+    if isinstance(element, set):
+        return type_set(
             element=element,
             recursive_func=shortprint_str,
             current_padding=current_padding,
