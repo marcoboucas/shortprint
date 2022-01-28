@@ -13,8 +13,6 @@ def shortprint_str(
 ) -> str:
     """Typeprint an element to string."""
     type_ = get_type(element)
-    if isinstance(element, (str, int, float)):
-        return add_padding(type_, current_padding)
 
     if isinstance(element, tuple):
         return type_tuple(
@@ -45,7 +43,7 @@ def shortprint_str(
             padding_increment=padding_increment,
         )
 
-    return f"Unknown Type ({element.__class__.__name__})"
+    return add_padding(type_, current_padding)
 
 
 def shortprint(*args, **kwargs) -> None:
