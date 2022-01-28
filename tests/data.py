@@ -2,6 +2,8 @@
 
 from dataclasses import dataclass
 
+from requests import Request
+
 
 @dataclass
 class TestDataclass:
@@ -57,4 +59,50 @@ TESTS_FOR_TUPLE = [
     ((), "Tuple[]\n"),
 ]
 
-ALL_TESTS = [TESTS_FOR_LIST, TESTS_FOR_STANDARD, TEST_FOR_DICT, TESTS_FOR_DATACLASSES]
+TESTS_FOR_OBJECTS = [
+    (
+        Request(),
+        """Request(
+  auth: None
+  cookies: None
+  data: List[]
+  files: List[]
+  headers: Dict[]
+  hooks: Dict[
+    (1) str: List[]
+  ]
+  json: None
+  method: None
+  params: Dict[]
+  url: None
+)
+""",
+    ),
+    (
+        Request("hello"),
+        """Request(
+  auth: None
+  cookies: None
+  data: List[]
+  files: List[]
+  headers: Dict[]
+  hooks: Dict[
+    (1) str: List[]
+  ]
+  json: None
+  method: str
+  params: Dict[]
+  url: None
+)
+""",
+    ),
+]
+
+ALL_TESTS = [
+    TESTS_FOR_LIST,
+    TESTS_FOR_STANDARD,
+    TEST_FOR_DICT,
+    TESTS_FOR_DATACLASSES,
+    TESTS_FOR_OBJECTS,
+    TESTS_FOR_TUPLE,
+]

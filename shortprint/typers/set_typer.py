@@ -1,14 +1,14 @@
 """Set typer."""
 
 from collections import defaultdict
-from typing import Any, Callable, Set
+from typing import Callable, FrozenSet, Set, Union
 
 from shortprint.utils import add_padding, get_type
 
 
 def type_set(
     *,
-    element: Set[Any],
+    element: Union[Set, FrozenSet],
     recursive_func: Callable,
     current_padding: str,
     padding_increment: int,
