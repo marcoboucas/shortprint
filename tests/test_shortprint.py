@@ -5,7 +5,7 @@ from typing import Any
 
 import pytest
 
-from shortprint.shortprint import shortprint_str
+from shortprint.shortprint import shortprint
 
 from .data import ALL_TESTS
 
@@ -17,4 +17,4 @@ from .data import ALL_TESTS
 def test_typeprint(test_input: Any, expected: str):
     """Test the typeprint_str() function."""
 
-    assert shortprint_str(test_input) == expected
+    assert shortprint(test_input) == expected
