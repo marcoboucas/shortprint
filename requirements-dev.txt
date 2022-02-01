@@ -4,8 +4,8 @@ flake8==4.0.1
 mypy==0.910
 pre-commit==2.15.0
 pytest==6.2.5
-types-requests==2.25.11
+types-requests==2.27.8
 coverage==6.1.1
 pytest-cov==3.0.0
+types-requests==2.27.8
 black==22.1.0
-types-requests==2.25.11
