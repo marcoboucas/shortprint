@@ -28,7 +28,7 @@ repos:
     hooks:
       - id: pylint
         name: pylint
-        entry: python -m pylint
+        entry: python -m pylint --disable=W0511
         language: system
         types: [python]
   - repo: local

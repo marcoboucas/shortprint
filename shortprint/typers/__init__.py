@@ -16,6 +16,7 @@ __all__ = [
     "type_list",
     "type_dataclass",
     "type_dict",
+    "type_ndarray",
     "type_tuple",
     "type_set",
     "type_object",

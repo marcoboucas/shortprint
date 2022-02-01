@@ -21,8 +21,9 @@ SPECIAL_OBJECTS: Dict[Tuple, Callable[..., str]] = {
 }
 
 
+# TODO: Reduce the complexity of the function for modules types (numpy, ...)
 # pylint: disable=too-many-return-statements
-def shortprint_str(  # noqa:C901
+def shortprint_str(  # noqa: C901
     element: Any,
     *,
     current_padding: str = "",
