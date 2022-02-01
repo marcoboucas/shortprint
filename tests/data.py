@@ -59,6 +59,22 @@ TESTS_FOR_TUPLE = [
     ((), "Tuple[]\n"),
 ]
 
+TESTS_DEPTH = [
+    (
+        [[[[[[[5]]]]]]],
+        """List[
+  (1) List[
+    (1) List[
+      (1) List[
+        (1) List[...]
+      ]
+    ]
+  ]
+]
+""",
+    )
+]
+
 
 class ObjectWithDict:
     def __init__(self) -> None:
@@ -115,4 +131,5 @@ ALL_TESTS = [
     TESTS_FOR_OBJECTS,
     TESTS_FOR_TUPLE,
     TESTS_FOR_SET,
+    TESTS_DEPTH,
 ]
