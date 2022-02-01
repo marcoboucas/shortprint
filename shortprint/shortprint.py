@@ -1,5 +1,6 @@
 """TypePrint."""
 
+from collections import defaultdict
 from dataclasses import is_dataclass
 from datetime import date, datetime, timedelta
 from typing import Any
@@ -36,7 +37,7 @@ def shortprint_str(
             current_padding=current_padding,
             padding_increment=padding_increment,
         )
-    if isinstance(element, dict):
+    if isinstance(element, (dict, defaultdict)):
         return type_dict(
             element=element,
             recursive_func=shortprint_str,
