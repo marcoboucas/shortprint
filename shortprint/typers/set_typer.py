@@ -12,12 +12,16 @@ def type_set(
     recursive_func: Callable,
     current_padding: str,
     padding_increment: int,
+    is_depth_reached: bool = False,
 ) -> str:
     """Type for a set."""
 
     # Empty set
     if len(element) == 0:
         return add_padding("Set{}", current_padding)
+
+    if is_depth_reached:
+        return add_padding("Set{...}", current_padding)
 
     # If not, we count the number of elements that differ (in terms of type)
     counter = defaultdict(list)

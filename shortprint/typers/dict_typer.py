@@ -12,6 +12,7 @@ def type_dict(
     recursive_func: Callable,
     current_padding: str,
     padding_increment: int,
+    is_depth_reached: bool = False,
 ) -> str:
     """Type for a dict."""
     entity_name = "Dict"
@@ -21,6 +22,9 @@ def type_dict(
     # Empty dict
     if len(element) == 0:
         return add_padding(f"{entity_name}[]", current_padding)
+
+    if is_depth_reached:
+        return add_padding("Dict[...]", current_padding)
 
     # If not, we count the number of elements that differ (in terms of type)
     element_types_dict: Dict[Tuple[str, str], List[Dict[str, str]]] = defaultdict(list)
