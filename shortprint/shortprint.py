@@ -1,5 +1,5 @@
 """TypePrint."""
-
+# pylint: disable=C0415
 from dataclasses import is_dataclass
 from typing import Any
 
@@ -36,6 +36,19 @@ def shortprint_str(
             current_padding=current_padding,
             padding_increment=padding_increment,
         )
+
+    try:
+        import numpy as np
+    except ImportError:
+        pass
+    else:
+        if isinstance(element, np.ndarray):
+            from shortprint.typers import type_ndarray
+
+            return type_ndarray(
+                element=element,
+                current_padding=current_padding,
+            )
 
     return f"Unknown Type ({element.__class__.__name__})"
 
