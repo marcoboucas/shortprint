@@ -83,6 +83,7 @@ def shortprint_str(  # noqa: C901
             **kwargs,  # type: ignore
         )
 
+    # Module types
     try:
         import numpy as np
     except ImportError:
