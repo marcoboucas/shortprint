@@ -2,6 +2,8 @@
 
 from dataclasses import dataclass
 
+import numpy as np
+
 
 @dataclass
 class TestDataclass:
@@ -50,5 +52,18 @@ TEST_FOR_DICT = [
     ({}, "Dict[]\n"),
 ]
 
+TEST_NDARRAY = [
+    (np.array([12.3, 13]), "NDArray[(2,), dtype=float64]\n"),
+    (np.array([12, 13]), "NDArray[(2,), dtype=int32]\n"),
+    (np.array([[12, 13]]), "NDArray[(1, 2), dtype=int32]\n"),
+    (np.array([[12.3, 13.2]]), "NDArray[(1, 2), dtype=float64]\n"),
+]
 
-ALL_TESTS = [TESTS_FOR_LIST, TESTS_FOR_STANDARD, TEST_FOR_DICT, TESTS_FOR_DATACLASSES]
+
+ALL_TESTS = [
+    TESTS_FOR_LIST,
+    TESTS_FOR_STANDARD,
+    TEST_FOR_DICT,
+    TESTS_FOR_DATACLASSES,
+    TEST_NDARRAY,
+]
