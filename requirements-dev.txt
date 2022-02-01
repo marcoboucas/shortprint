@@ -9,3 +9,4 @@ coverage==6.3
 pytest-cov==3.0.0
 types-requests==2.27.8
 black==22.1.0
+numpy==1.22.1
