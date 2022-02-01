@@ -3,7 +3,6 @@
 from collections import defaultdict
 from dataclasses import dataclass
 from typing import DefaultDict, List, Tuple
-
 from requests import Request
 
 TESTS_FOR_LIST = [
@@ -128,6 +127,20 @@ TESTS_FOR_OBJECTS = [
 
 
 TESTS_FOR_SET = [({1, 2}, "Set{\n  (2) int\n}\n"), (set(), "Set{}\n")]
+
+recursive_list: List = [1, 2]
+recursive_list.append(recursive_list)
+
+TESTS_FOR_RECURSION = [
+    (
+        recursive_list,
+        """List[
+  (2) int
+  (1) <Recursion avoided: 'list'>
+]
+""",
+    )
+]
 ALL_TESTS = [
     TESTS_FOR_LIST,
     TESTS_FOR_STANDARD,
@@ -138,4 +151,5 @@ ALL_TESTS = [
     TESTS_FOR_DEFAULTDICT,
     TESTS_FOR_SET,
     TESTS_DEPTH,
+    TESTS_FOR_RECURSION,
 ]

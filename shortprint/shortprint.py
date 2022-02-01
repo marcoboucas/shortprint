@@ -4,7 +4,7 @@ from collections import defaultdict
 from dataclasses import is_dataclass
 from datetime import date, datetime, timedelta
 from functools import partial
-from typing import Any
+from typing import Any, Optional, Set
 
 from shortprint.config import MAX_DEPTH, PADDING
 from shortprint.typers import type_dataclass, type_dict, type_list, type_tuple
@@ -20,8 +20,11 @@ def shortprint_str(
     current_padding: str = "",
     padding_increment: int = PADDING,
     depth: int = MAX_DEPTH,
+    already_visited: Optional[Set[str]] = None,
 ) -> str:
     """Typeprint an element to string."""
+    if already_visited is None:
+        already_visited = set()
     type_ = get_type(element)
 
     if element is None:
@@ -29,9 +32,21 @@ def shortprint_str(
     if isinstance(element, (str, int, float, date, datetime, timedelta, bytes)):
         return add_padding(type_, current_padding)
 
-    kwargs = dict(current_padding=current_padding, padding_increment=padding_increment)
     # Special objects
-    recursive_func = partial(shortprint_str, depth=depth - 1)
+    element_identifier = str(id(element))
+    if element_identifier in already_visited:
+        return add_padding(
+            f"<Recursion avoided: '{element.__class__.__name__}'>", current_padding
+        )
+    already_visited.add(element_identifier)
+
+    kwargs = dict(
+        current_padding=current_padding,
+        padding_increment=padding_increment,
+    )
+    recursive_func = partial(
+        shortprint_str, depth=depth - 1, already_visited=already_visited
+    )
     if isinstance(element, tuple):
         return type_tuple(
             element=element,
