@@ -57,6 +57,7 @@ TEST_NDARRAY = [
     (np.array([12, 13]), "NDArray[(2,), dtype=int32]\n"),
     (np.array([[12, 13]]), "NDArray[(1, 2), dtype=int32]\n"),
     (np.array([[12.3, 13.2]]), "NDArray[(1, 2), dtype=float64]\n"),
+    (np.array([[12.3, 13.2]]), "NDArray[(1, 2), dtype=float64]\n"),
 ]
 
 
