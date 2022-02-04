@@ -3,13 +3,20 @@
 from dataclasses import is_dataclass
 from datetime import date, datetime, timedelta
 from functools import partial
-from typing import Any, Optional, Set
+from typing import Any, Callable, Dict, Optional, Set, Tuple
 
 from shortprint.config import MAX_DEPTH, PADDING
 from shortprint.typers import type_dataclass, type_dict, type_list, type_tuple
 from shortprint.typers.object_typer import type_object
 from shortprint.typers.set_typer import type_set
 from shortprint.utils import add_padding, get_type
+
+SPECIAL_OBJECTS: Dict[Tuple, Callable[..., str]] = {
+    (tuple,): type_tuple,
+    (list,): type_list,
+    (dict,): type_dict,
+    (set, frozenset): type_set,
+}
 
 
 # pylint: disable=too-many-return-statements
@@ -53,34 +60,18 @@ def shortprint_str(
         already_visited=already_visited,
         padding_increment=padding_increment,
     )
-    if isinstance(element, tuple):
-        return type_tuple(
-            element=element,
-            recursive_func=recursive_func,
-            is_depth_reached=depth == 0,
-            **kwargs,  # type: ignore
-        )
-    if isinstance(element, list):
-        return type_list(
-            element=element,
-            recursive_func=recursive_func,
-            is_depth_reached=depth == 0,
-            **kwargs,  # type: ignore
-        )
-    if isinstance(element, dict):
-        return type_dict(
-            element=element,
-            recursive_func=recursive_func,
-            is_depth_reached=depth == 0,
-            **kwargs,  # type: ignore
-        )
-    if isinstance(element, (set, frozenset)):
-        return type_set(
-            element=element,
-            recursive_func=recursive_func,
-            is_depth_reached=depth == 0,
-            **kwargs,  # type: ignore
-        )
+
+    # Special objects
+    for types, type_func in SPECIAL_OBJECTS.items():
+        if isinstance(element, types):
+            return type_func(
+                element=element,
+                recursive_func=recursive_func,
+                is_depth_reached=depth == 0,
+                **kwargs,  # type: ignore
+            )
+
+    # Not classic types
     if is_dataclass(element):
         return type_dataclass(
             element=element,
