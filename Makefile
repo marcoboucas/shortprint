@@ -36,3 +36,7 @@ ship:
 coverage:
 	pytest --cov=$(package_name) --cov-report=html tests/
 	cd htmlcov && start "http://localhost:8000" && python -m http.server
+
+
+doc:
+	doc.bat html
