@@ -120,7 +120,7 @@ class ObjectWithDict:
 TESTS_FOR_OBJECTS = [
     (
         Request(),
-        """Request(
+        """requests.models.Request(
   auth: None
   cookies: None
   data: List[]
@@ -138,7 +138,7 @@ TESTS_FOR_OBJECTS = [
     ),
     (
         Request("hello"),
-        """Request(
+        """requests.models.Request(
   auth: None
   cookies: None
   data: List[]
@@ -154,7 +154,7 @@ TESTS_FOR_OBJECTS = [
 )
 """,
     ),
-    (ObjectWithDict(), "ObjectWithDict()\n"),
+    (ObjectWithDict(), "tests.data.ObjectWithDict()\n"),
 ]
 
 TESTS_FOR_SET = [({1, 2}, "Set{\n  (2) int\n}\n"), (set(), "Set{}\n")]
