@@ -1,7 +1,6 @@
 """Object Typer."""
 
 import logging
-from time import sleep
 from typing import Any, Callable, List
 
 from shortprint.utils import add_padding, get_type
@@ -29,6 +28,7 @@ def type_object(
         return add_padding(f"{get_type(element)}()", current_padding)
 
     if hasattr(element, "__dict__"):
+        # If we have access to dict, then easy peasy
         attributes = list(
             sorted(
                 [
@@ -54,11 +54,9 @@ def type_object(
         attributes = []
         for key in special_keys:
             attributes.append(f"{key}: {recursive_func(getattr(element,key))[:-1]}")
-            print(attributes[-1])
-            sleep(1)
         attributes = list(sorted(attributes))
 
-        if len(attributes) == 0:  # Standard for basic types (str, ...)
+        if len(attributes) == 0:  # Standard for basic types
             return add_padding(get_type(element), current_padding)
 
     # Handle the case when there are no public attributes
