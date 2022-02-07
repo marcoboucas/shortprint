@@ -1,5 +1,6 @@
 """TypePrint."""
 
+from collections import defaultdict
 from dataclasses import is_dataclass
 from datetime import date, datetime, timedelta
 from functools import partial
@@ -14,7 +15,7 @@ from shortprint.utils import add_padding, get_type
 SPECIAL_OBJECTS: Dict[Tuple, Callable[..., str]] = {
     (tuple,): type_tuple,
     (list,): type_list,
-    (dict,): type_dict,
+    (dict, defaultdict): type_dict,
     (set, frozenset): type_set,
 }
 

@@ -15,10 +15,13 @@ def type_dict(
     is_depth_reached: bool = False,
 ) -> str:
     """Type for a dict."""
+    entity_name = "Dict"
+    if isinstance(element, defaultdict):
+        entity_name = "DefaultDict"
 
     # Empty dict
     if len(element) == 0:
-        return add_padding("Dict[]", current_padding)
+        return add_padding(f"{entity_name}[]", current_padding)
 
     if is_depth_reached:
         return add_padding("Dict[...]", current_padding)
@@ -50,7 +53,7 @@ def type_dict(
         context_text += to_add
 
     return (
-        add_padding("Dict[", current_padding)
+        add_padding(f"{entity_name}[", current_padding)
         + add_padding(
             context_text,
             current_padding + padding_increment * " ",

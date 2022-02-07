@@ -1,7 +1,8 @@
 """Test data."""
 # pylint: disable=missing-class-docstring,too-few-public-methods
+from collections import defaultdict
 from dataclasses import dataclass
-from typing import List
+from typing import DefaultDict, List, Tuple
 
 from requests import Request
 
@@ -51,6 +52,9 @@ TEST_FOR_DICT = [
         "Dict[\n  (1) int: List[\n    (1) str\n  ]\n  (1) int: str\n]\n",
     ),
     ({}, "Dict[]\n"),
+]
+TESTS_FOR_DEFAULTDICT: List[Tuple[DefaultDict, str]] = [
+    (defaultdict(list, dict(a=[])), "DefaultDict[\n  (1) str: List[]\n]\n")
 ]
 
 TESTS_FOR_TUPLE = [
@@ -145,6 +149,7 @@ ALL_TESTS = [
     TESTS_FOR_DATACLASSES,
     TESTS_FOR_OBJECTS,
     TESTS_FOR_TUPLE,
+    TESTS_FOR_DEFAULTDICT,
     TESTS_FOR_SET,
     TESTS_DEPTH,
     TESTS_FOR_RECURSION,
