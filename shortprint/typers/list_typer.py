@@ -12,12 +12,16 @@ def type_list(
     recursive_func: Callable,
     current_padding: str,
     padding_increment: int,
+    is_depth_reached: bool = False,
 ) -> str:
     """Type for a list."""
 
     # Empty list
     if len(element) == 0:
         return add_padding("List[]", current_padding)
+
+    if is_depth_reached:
+        return add_padding("List[...]", current_padding)
 
     # If not, we count the number of elements that differ (in terms of type)
     counter = defaultdict(list)

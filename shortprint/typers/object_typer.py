@@ -13,8 +13,12 @@ def type_object(
     padding_increment: int,
     only_show_public_attributes: bool = True,
     only_show_attributes: bool = True,
+    is_depth_reached: bool = False,
 ) -> str:
     """Type for a list."""
+
+    if is_depth_reached:
+        return add_padding(f"{element.__class__.__name__}()", current_padding)
 
     if not hasattr(element, "__dict__"):
         return add_padding(get_type(element), current_padding)

@@ -11,8 +11,12 @@ def type_dataclass(
     recursive_func: Callable,
     current_padding: str,
     padding_increment: int,
+    is_depth_reached: bool = False,
 ) -> str:
     """Type for a dataclass."""
+
+    if is_depth_reached:
+        return add_padding(f"{element.__class__.__name__}(...)", current_padding)
 
     content_text = "\n".join(
         list(
