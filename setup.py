@@ -5,6 +5,11 @@ import setuptools
 with open("README.md", "r", encoding="utf-8") as file:
     long_description = file.read()
 
+# TODO: REMOVE THIS
+import os
+import logging
+logging.warning(str(os.listdir()))
+
 with open("requirements.txt", "r", encoding="utf-8") as file:
     requirements = file.read().split("\n")
 
