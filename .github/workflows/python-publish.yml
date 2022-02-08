@@ -34,3 +34,5 @@ jobs:
       with:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
+      env:
+        RELEASE_NAME: ${{github.event.release.name}}

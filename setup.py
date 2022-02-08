@@ -1,5 +1,6 @@
 """Setup.py file."""
 
+import os
 
 import setuptools
 
@@ -11,7 +12,7 @@ from shortprint.requirements import REQUIREMENTS
 
 setuptools.setup(
     name="shortprint",  # This is the name of the package
-    version="0.0.2",  # The initial release version
+    version=os.getenv("RELEASE_NAME", "0.0.2"),  # The initial release version
     author="Marco Boucas",  # Full name of the author
     url="https://github.com/marcoboucas/shortprint",
     description="The module to help you understand your data",
