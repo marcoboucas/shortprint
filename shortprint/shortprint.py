@@ -22,7 +22,7 @@ SPECIAL_OBJECTS: Dict[Tuple, Callable[..., str]] = {
 
 
 # pylint: disable=too-many-return-statements
-def shortprint_str(
+def shortprint_str(  # noqa:C901
     element: Any,
     *,
     current_padding: str = "",
