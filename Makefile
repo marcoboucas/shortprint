@@ -13,6 +13,7 @@ install:
 install-dev: install
 	pip install -r requirements-dev.txt
 	pre-commit install
+	pre-commit install --hook-type commit-msg
 
 
 clean:
@@ -40,3 +41,6 @@ coverage:
 
 doc:
 	doc.bat html
+
+check:
+	python scripts/special_pre_commit.py

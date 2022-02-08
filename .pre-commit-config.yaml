@@ -38,3 +38,10 @@ repos:
         entry: make test
         language: system
         types: [python]
+  - repo: local
+    hooks:
+      - id: special_checks
+        name: Special checks
+        entry: make check
+        language: system
+        types: [python]

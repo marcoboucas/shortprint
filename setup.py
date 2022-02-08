@@ -1,17 +1,13 @@
 """Setup.py file."""
 
+
 import setuptools
 
 with open("README.md", "r", encoding="utf-8") as file:
     long_description = file.read()
 
-# TODO: REMOVE THIS
-import os
-import logging
-logging.warning(str(os.listdir()))
 
-with open("requirements.txt", "r", encoding="utf-8") as file:
-    requirements = file.read().split("\n")
+from shortprint.requirements import REQUIREMENTS
 
 setuptools.setup(
     name="shortprint",  # This is the name of the package
@@ -31,5 +27,5 @@ setuptools.setup(
     ],  # Information to filter the project on PyPi website
     python_requires=">=3.6",  # Minimum version requirement of the package
     py_modules=["shortprint"],  # Name of the python package
-    install_requires=requirements,  # Install other dependencies if any
+    install_requires=REQUIREMENTS,  # Install other dependencies if any
 )
