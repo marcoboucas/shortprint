@@ -1,5 +1,15 @@
 # ShortPrint, the module to help you understand your data in an instant
 
+
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/marcoboucas/shortprint/CI)
+[![Documentation Status](https://readthedocs.org/projects/shortprint/badge/?version=latest)](https://shortprint.readthedocs.io/en/latest/?badge=latest)
+![CodeQL](https://github.com/marcoboucas/shortprint/workflows/CodeQL/badge.svg)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/marcoboucas/shortprint)
+
+
+[![wakatime](https://wakatime.com/badge/github/marcoboucas/shortprint.svg)](https://wakatime.com/badge/github/marcoboucas/shortprint)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/marcoboucas/shortprint)
+![GitHub last commit](https://img.shields.io/github/last-commit/marcoboucas/shortprint)
 ## How to use Shortprint
 
 First, you need to install our module

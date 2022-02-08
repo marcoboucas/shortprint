@@ -6,6 +6,27 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+"""Patching m2r2"""
+import m2r2
+
+current_m2r2_setup = m2r2.setup
+
+
+def patched_m2r2_setup(app):
+    try:
+        return current_m2r2_setup(app)
+    except (AttributeError):
+        app.add_source_suffix(".md", "markdown")
+        app.add_source_parser(m2r2.M2RParser)
+    return dict(
+        version=m2r2.__version__,
+        parallel_read_safe=True,
+        parallel_write_safe=True,
+    )
+
+
+m2r2.setup = patched_m2r2_setup
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -33,7 +54,7 @@ release = "0.0.3"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["sphinx.ext.autodoc"]
+extensions = ["sphinx.ext.autodoc", "m2r2"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -55,3 +76,5 @@ html_theme = "sphinx_rtd_theme"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
+
+source_suffix = [".rst", ".md"]

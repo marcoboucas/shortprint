@@ -16,7 +16,7 @@ jobs:
     - uses: ammaraskar/sphinx-action@master
       with:
         build-command: "sphinx-build . build"
-        docs-folder: "source/"
+        docs-folder: "docs/"
     # # Example of using a custom build-command.
     # - uses: ammaraskar/sphinx-action@master
     #   with:
