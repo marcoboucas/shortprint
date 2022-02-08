@@ -46,7 +46,6 @@ def shortprint_str(  # noqa: C901
         return add_padding(type_, current_padding)
 
     # Special objects
-    recursive_func = partial(shortprint_str, depth=depth - 1)
     element_identifier = str(id(element))
     if element_identifier in already_visited:
         return add_padding(

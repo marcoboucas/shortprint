@@ -48,6 +48,6 @@ def display_caller(func_name: str = "shortprint"):
         "Shortprinting the variable located at the following location:\n"
         f"File: {cal_frame.filename}, at line {cal_frame.lineno}\n"
         f"Variable Name: '{var_name}'\n"
-        "=" * 25
+        f'{"=" * 25}'
     )
     print(msg)
