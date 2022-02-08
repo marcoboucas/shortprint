@@ -1,5 +1,6 @@
 """Dict typer."""
 # pylint: disable=R0914
+
 from collections import defaultdict
 from typing import Any, Callable, Dict, List, Tuple
 
@@ -32,23 +33,23 @@ def type_dict(
     for ele, val in element.items():
         element_types_dict[get_type(ele), get_type(val)].append(
             {
-                "key_type": recursive_func(ele),
-                "value_type": recursive_func(val),
+                "key": ele,
+                "value": val,
             }
         )
 
     # sort by number of elements, key_type string and value_type string
     element_types_dict_sorted = sorted(
-        element_types_dict.values(),
-        key=lambda x: (len(x), x[0]["key_type"], x[0]["value_type"]),
+        element_types_dict.items(),
+        key=lambda x: (len(x[1]), x[0][0], x[0][1]),
     )
 
     context_text = ""
 
-    for flatten_ele in element_types_dict_sorted:
+    for _, value in element_types_dict_sorted:
         to_add = (
-            f"({len(flatten_ele)}) {flatten_ele[0]['key_type'][:-1]}"
-            f": {flatten_ele[0]['value_type'][:-1]}\n"
+            f"({len(value)}) {recursive_func(value[0]['key'])[:-1]}"
+            f": {recursive_func(value[0]['value'])[:-1]}\n"
         )
         context_text += to_add
 

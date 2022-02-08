@@ -43,7 +43,7 @@ TESTS_FOR_STANDARD = [
 ]
 
 
-TEST_FOR_DICT = [
+TESTS_FOR_DICT = [
     ({"hello": "world"}, "Dict[\n  (1) str: str\n]\n"),
     ({"hello": "world", "bonjour": "monde"}, "Dict[\n  (2) str: str\n]\n"),
     ({1: "world"}, "Dict[\n  (1) int: str\n]\n"),
@@ -74,6 +74,27 @@ TESTS_FOR_TUPLE = [
     ((), "Tuple[]\n"),
 ]
 
+recursive_list: List = [1, 2]
+recursive_list.append(recursive_list)
+
+TESTS_FOR_RECURSION = [
+    (
+        recursive_list,
+        """List[
+  (2) int
+  (1) <Recursion avoided: 'list'>
+]
+""",
+    )
+]
+TESTS_NDARRAY = [
+    (np.array([12.3, 13], dtype=np.float64), "NDArray[(2,), dtype=float64]\n"),
+    (np.array([12, 13], dtype=np.int32), "NDArray[(2,), dtype=int32]\n"),
+    (np.array([[12, 13]], dtype=np.int32), "NDArray[(1, 2), dtype=int32]\n"),
+    (np.array([[12.3, 13.2]], dtype=np.float64), "NDArray[(1, 2), dtype=float64]\n"),
+]
+
+
 TESTS_DEPTH = [
     (
         [[[[[[[5]]]]]]],
@@ -99,7 +120,7 @@ class ObjectWithDict:
 TESTS_FOR_OBJECTS = [
     (
         Request(),
-        """Request(
+        """requests.models.Request(
   auth: None
   cookies: None
   data: List[]
@@ -117,7 +138,7 @@ TESTS_FOR_OBJECTS = [
     ),
     (
         Request("hello"),
-        """Request(
+        """requests.models.Request(
   auth: None
   cookies: None
   data: List[]
@@ -133,29 +154,15 @@ TESTS_FOR_OBJECTS = [
 )
 """,
     ),
-    (ObjectWithDict(), "ObjectWithDict()\n"),
+    (ObjectWithDict(), "tests.data.ObjectWithDict()\n"),
 ]
-
 
 TESTS_FOR_SET = [({1, 2}, "Set{\n  (2) int\n}\n"), (set(), "Set{}\n")]
 
-recursive_list: List = [1, 2]
-recursive_list.append(recursive_list)
-
-TESTS_FOR_RECURSION = [
-    (
-        recursive_list,
-        """List[
-  (2) int
-  (1) <Recursion avoided: 'list'>
-]
-""",
-    )
-]
 ALL_TESTS = [
     TESTS_FOR_LIST,
     TESTS_FOR_STANDARD,
-    TEST_FOR_DICT,
+    TESTS_FOR_DICT,
     TESTS_FOR_DATACLASSES,
     TEST_NDARRAY,
     TESTS_FOR_OBJECTS,
@@ -164,4 +171,5 @@ ALL_TESTS = [
     TESTS_FOR_SET,
     TESTS_DEPTH,
     TESTS_FOR_RECURSION,
+    TESTS_NDARRAY,
 ]

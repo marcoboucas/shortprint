@@ -1,6 +1,6 @@
 package_name = shortprint
 lint:
-	python -m pylint $(package_name)
+	python -m pylint $(package_name) --disable=W0511
 	python -m mypy $(package_name)
 	python -m flake8 $(package_name)
 

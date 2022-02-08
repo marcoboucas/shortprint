@@ -21,8 +21,9 @@ SPECIAL_OBJECTS: Dict[Tuple, Callable[..., str]] = {
 }
 
 
+# TODO: Reduce the complexity of the function for modules types (numpy, ...)
 # pylint: disable=too-many-return-statements
-def shortprint_str(  # noqa:C901
+def shortprint_str(  # noqa: C901
     element: Any,
     *,
     current_padding: str = "",
@@ -36,6 +37,7 @@ def shortprint_str(  # noqa:C901
     if already_visited is None:
         already_visited = set()
     type_ = get_type(element)
+    kwargs = dict(current_padding=current_padding, padding_increment=padding_increment)
 
     # Base types
     if element is None:
@@ -77,11 +79,12 @@ def shortprint_str(  # noqa:C901
     if is_dataclass(element):
         return type_dataclass(
             element=element,
-            recursive_func=shortprint_str,
+            recursive_func=recursive_func,
             is_depth_reached=depth == 0,
             **kwargs,  # type: ignore
         )
 
+    # Module types
     try:
         import numpy as np
     except ImportError:
@@ -97,14 +100,14 @@ def shortprint_str(  # noqa:C901
 
     return type_object(
         element=element,
-        recursive_func=shortprint_str,
+        recursive_func=recursive_func,
         is_depth_reached=depth == 0,
         **kwargs,  # type: ignore
     )
 
 
 def shortprint_print(*args, **kwargs) -> str:
-    """Print the results."""
+    """Shortprint print result."""
     result = shortprint_str(*args, **kwargs)
     print(result)
     return result
