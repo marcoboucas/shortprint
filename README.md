@@ -21,7 +21,7 @@ Then, you simply need to do the following in your code:
 ```python
 from shortprint import shortprint
 
-from requests import Request()
+from requests import Request
 your_object = Request()
 
 # Print a preview of the result of you function
@@ -31,7 +31,16 @@ shortprint(your_object)
 ```
 And the result could be the following:
 ```
-List[]
+===== Shortprinting =====
+Shortprinting the variable located at the following location:
+File: test.py, at line 10
+Variable Name: 'your_object'
+=========================
+requests.models.Request(
+  auth: None
+  cookies: None
+  data: List[]
+  files: List[]
   headers: Dict[]
   hooks: Dict[
     (1) str: List[]
