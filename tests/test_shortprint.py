@@ -6,8 +6,7 @@ from typing import Any
 import pytest
 
 from shortprint.shortprint import shortprint_str
-
-from .data import ALL_TESTS
+from tests.data import ALL_TESTS
 
 
 @pytest.mark.parametrize(
