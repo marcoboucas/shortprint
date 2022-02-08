@@ -1,4 +1,5 @@
 """TypePrint."""
+# pylint: disable=C0415
 
 from collections import defaultdict
 from dataclasses import is_dataclass
@@ -21,7 +22,7 @@ SPECIAL_OBJECTS: Dict[Tuple, Callable[..., str]] = {
 
 
 # pylint: disable=too-many-return-statements
-def shortprint_str(
+def shortprint_str(  # noqa:C901
     element: Any,
     *,
     current_padding: str = "",
@@ -80,6 +81,19 @@ def shortprint_str(
             is_depth_reached=depth == 0,
             **kwargs,  # type: ignore
         )
+
+    try:
+        import numpy as np
+    except ImportError:
+        pass
+    else:
+        if isinstance(element, np.ndarray):
+            from shortprint.typers import type_ndarray
+
+            return type_ndarray(
+                element=element,
+                current_padding=current_padding,
+            )
 
     return type_object(
         element=element,

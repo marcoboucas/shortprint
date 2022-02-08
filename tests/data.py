@@ -4,14 +4,8 @@ from collections import defaultdict
 from dataclasses import dataclass
 from typing import DefaultDict, List, Tuple
 
+import numpy as np
 from requests import Request
-
-TESTS_FOR_LIST = [
-    ([1, 2, 3], "List[\n  (3) int\n]\n"),
-    ([1, 2, 3, "abc"], "List[\n  (3) int\n  (1) str\n]\n"),
-    ([1, 2, 3, "abc", 3.5, 3.1], "List[\n  (2) float\n  (3) int\n  (1) str\n]\n"),
-    ([], "List[]\n"),
-]
 
 
 @dataclass
@@ -21,6 +15,13 @@ class TestDataclass:
     attribute_str: str = "hello"
     attribute_int: int = 1
 
+
+TESTS_FOR_LIST = [
+    ([1, 2, 3], "List[\n  (3) int\n]\n"),
+    ([1, 2, 3, "abc"], "List[\n  (3) int\n  (1) str\n]\n"),
+    ([1, 2, 3, "abc", 3.5, 3.1], "List[\n  (2) float\n  (3) int\n  (1) str\n]\n"),
+    ([], "List[]\n"),
+]
 
 TESTS_FOR_DATACLASSES = [
     (
@@ -56,6 +57,15 @@ TEST_FOR_DICT = [
 TESTS_FOR_DEFAULTDICT: List[Tuple[DefaultDict, str]] = [
     (defaultdict(list, dict(a=[])), "DefaultDict[\n  (1) str: List[]\n]\n")
 ]
+
+TEST_NDARRAY = [
+    (np.array([12.3, 13]), "NDArray[(2,), dtype=float64]\n"),
+    (np.array([12, 13]), "NDArray[(2,), dtype=int32]\n"),
+    (np.array([[12, 13]]), "NDArray[(1, 2), dtype=int32]\n"),
+    (np.array([[12.3, 13.2]]), "NDArray[(1, 2), dtype=float64]\n"),
+    (np.array([[12.3, 13.2]]), "NDArray[(1, 2), dtype=float64]\n"),
+]
+
 
 TESTS_FOR_TUPLE = [
     ((1, 2, 3), "Tuple[\n  (3) int\n]\n"),
@@ -147,6 +157,7 @@ ALL_TESTS = [
     TESTS_FOR_STANDARD,
     TEST_FOR_DICT,
     TESTS_FOR_DATACLASSES,
+    TEST_NDARRAY,
     TESTS_FOR_OBJECTS,
     TESTS_FOR_TUPLE,
     TESTS_FOR_DEFAULTDICT,
