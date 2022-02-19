@@ -6,7 +6,9 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-"""Patching m2r2"""
+"""Patching m2r2
+We need to do that to add the readme without errors
+"""
 import m2r2
 
 current_m2r2_setup = m2r2.setup
