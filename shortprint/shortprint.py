@@ -11,7 +11,7 @@ from shortprint.config import MAX_DEPTH, PADDING
 from shortprint.typers import type_dataclass, type_dict, type_list, type_tuple
 from shortprint.typers.object_typer import type_object
 from shortprint.typers.set_typer import type_set
-from shortprint.utils import add_padding, get_type
+from shortprint.utils import add_padding, display_caller, get_type
 
 SPECIAL_OBJECTS: Dict[Tuple, Callable[..., str]] = {
     (tuple,): type_tuple,
@@ -46,7 +46,6 @@ def shortprint_str(  # noqa: C901
         return add_padding(type_, current_padding)
 
     # Special objects
-    recursive_func = partial(shortprint_str, depth=depth - 1)
     element_identifier = str(id(element))
     if element_identifier in already_visited:
         return add_padding(
@@ -106,8 +105,14 @@ def shortprint_str(  # noqa: C901
     )
 
 
-def shortprint_print(*args, **kwargs) -> str:
-    """Shortprint print result."""
+def shortprint_print(
+    *args,
+    display_info: bool = True,
+    **kwargs,
+) -> str:
+    """Typeprint an element."""
+    if display_info:
+        display_caller()
     result = shortprint_str(*args, **kwargs)
     print(result)
     return result
