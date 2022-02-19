@@ -36,6 +36,8 @@ ship:
 	python -m twine upload dist/*
 
 coverage:
+	py.test --cov=$(package_name) --cov-report=xml:coverage.xml  tests/
+coverage-report:
 	pytest --cov=$(package_name) --cov-report=html tests/
 	cd htmlcov && start "http://localhost:8000" && python -m http.server
 

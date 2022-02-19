@@ -47,4 +47,16 @@ TESTS_FOR_OBJECTS = [
 """,
     ),
     (ObjectWithDict(), "tests.data.objects_data.ObjectWithDict()\n"),
+    (
+        [[[[ObjectWithDict()]]]],
+        """List[
+  (1) List[
+    (1) List[
+      (1) List[
+        (1) tests.data.objects_data.ObjectWithDict(...)
+      ]
+    ]
+  ]
+]\n""",
+    ),
 ]

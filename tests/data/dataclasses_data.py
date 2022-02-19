@@ -20,4 +20,17 @@ TESTS_FOR_DATACLASSES = [
         TestDataclass("bye"),
         "TestDataclass(\n  attribute_int: int\n  attribute_str: str\n)\n",
     ),
+    (
+        [[[[TestDataclass("bye")]]]],
+        """List[
+  (1) List[
+    (1) List[
+      (1) List[
+        (1) TestDataclass(...)
+      ]
+    ]
+  ]
+]
+""",
+    ),
 ]

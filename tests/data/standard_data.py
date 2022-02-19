@@ -28,17 +28,98 @@ TESTS_FOR_DICT = [
         "Dict[\n  (1) int: List[\n    (1) str\n  ]\n  (1) int: str\n]\n",
     ),
     ({}, "Dict[]\n"),
+    (
+        [[[[{}]]]],  # Dictionary at max depth, but empty
+        """List[
+  (1) List[
+    (1) List[
+      (1) List[
+        (1) Dict[]
+      ]
+    ]
+  ]
+]
+""",
+    ),
+    (
+        [[[[{"key": 1}]]]],  # Dictionary at max depth, not empty
+        """List[
+  (1) List[
+    (1) List[
+      (1) List[
+        (1) Dict[...]
+      ]
+    ]
+  ]
+]
+""",
+    ),
 ]
 TESTS_FOR_DEFAULTDICT: List[Tuple[DefaultDict, str]] = [
     (defaultdict(list, dict(a=[])), "DefaultDict[\n  (1) str: List[]\n]\n")
 ]
 
 
-TESTS_FOR_SET = [({1, 2}, "Set{\n  (2) int\n}\n"), (set(), "Set{}\n")]
+TESTS_FOR_SET = [
+    ({1, 2}, "Set{\n  (2) int\n}\n"),
+    (set(), "Set{}\n"),
+    (
+        [[[[set()]]]],  # Set at max depth, but empty
+        """List[
+  (1) List[
+    (1) List[
+      (1) List[
+        (1) Set{}
+      ]
+    ]
+  ]
+]
+""",
+    ),
+    (
+        [[[[{"key"}]]]],  # Set at max depth, not empty
+        """List[
+  (1) List[
+    (1) List[
+      (1) List[
+        (1) Set{...}
+      ]
+    ]
+  ]
+]
+""",
+    ),
+]
 
 TESTS_FOR_TUPLE = [
     ((1, 2, 3), "Tuple[\n  (3) int\n]\n"),
     ((1, 2, 3, "abc"), "Tuple[\n  (3) int\n  (1) str\n]\n"),
     ((1, 2, 3, "abc", 3.5, 3.1), "Tuple[\n  (2) float\n  (3) int\n  (1) str\n]\n"),
     ((), "Tuple[]\n"),
+    (
+        [[[[tuple()]]]],  # Tuple at max depth, but empty
+        """List[
+  (1) List[
+    (1) List[
+      (1) List[
+        (1) Tuple[]
+      ]
+    ]
+  ]
+]
+""",
+    ),
+    (
+        [[[[(1,)]]]],  # Tuple at max depth, not empty
+        """List[
+  (1) List[
+    (1) List[
+      (1) List[
+        (1) Tuple[...]
+      ]
+    ]
+  ]
+]
+""",
+    ),
 ]
