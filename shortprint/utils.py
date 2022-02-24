@@ -22,7 +22,10 @@ def add_padding(text: str, current_padding: str) -> str:
 
 def get_type(ele: Any) -> str:
     """Get the type of an element."""
-    return str(type(ele)).split("'")[1]
+    try:
+        return str(type(ele)).split("'")[1]
+    except IndexError:
+        return str(type(ele))
 
 
 def display_caller(func_name: str = "shortprint"):
