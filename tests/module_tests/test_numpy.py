@@ -1,4 +1,4 @@
-"""Tests for numpy."""
+"""Module tests."""
 
 
 from typing import List
@@ -7,7 +7,6 @@ import pytest
 
 from shortprint.shortprint import shortprint_str
 
-CAN_RUN_TEST = True
 TEST_INSTANCES: List = []
 try:
     import numpy as np
@@ -24,7 +23,7 @@ try:
 
 
 except ImportError:
-    CAN_RUN_TEST = False
+    pass
 
 
 @pytest.mark.module
@@ -32,7 +31,7 @@ except ImportError:
     "test_input,expected",
     TEST_INSTANCES,  # type: ignore
 )
-def test_numpy(test_input, expected):
-    """Test numpy objects."""
+def test_function(test_input, expected):
+    """Test shortprint reaction to those objects."""
 
     assert shortprint_str(test_input) == expected
