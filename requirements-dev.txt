@@ -4,11 +4,11 @@ flake8==4.0.1
 mypy==0.931
 pre-commit==2.17.0
 pytest==7.0.1
-types-requests==2.27.11
 coverage==6.3.2
 pytest-cov==3.0.0
-types-requests==2.27.11
 black==22.1.0
-numpy==1.22.2
 Sphinx==4.4.0
-requests==2.27.1
+sphinx-rtd-theme==1.0.0
+#requests
+#numpy
+#types-requests
