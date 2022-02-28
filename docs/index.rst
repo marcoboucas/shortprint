@@ -6,6 +6,10 @@
 Welcome to Shortprint's documentation!
 ======================================
 
+
+
+.. mdinclude:: ../README.md
+
 .. autofunction:: shortprint.shortprint
 
 .. toctree::
@@ -13,9 +17,6 @@ Welcome to Shortprint's documentation!
    :caption: Contents:
 
    typers
-
-
-
 
 
 Indices and tables

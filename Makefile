@@ -11,7 +11,8 @@ test:
 install:
 	pip install -r requirements.txt
 install-dev: install
-	pip install -r requirements-dev.txt
+	pip install -r requirements-dev.txt  # Development dependencies
+	pip install -r ./docs/requirements.txt  # Doc dependencies
 	pre-commit install
 	pre-commit install --hook-type commit-msg
 
