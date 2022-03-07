@@ -25,7 +25,7 @@ def type_object(
     attributes: List[str]
 
     if is_depth_reached:  # Max depth
-        return add_padding(f"{get_type(element)}()", current_padding)
+        return add_padding(f"{get_type(element)}(...)", current_padding)
 
     if hasattr(element, "__dict__"):
         # If we have access to dict, then easy peasy

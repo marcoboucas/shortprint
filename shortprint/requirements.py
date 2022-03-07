@@ -1,3 +1,3 @@
 """Module requirements."""
 
-REQUIREMENTS = []  # type: ignore
+REQUIREMENTS = []  # type: ignore # pragma: no cover

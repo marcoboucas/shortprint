@@ -1,0 +1,27 @@
+"""Test data."""
+
+
+from .dataclasses_data import TESTS_FOR_DATACLASSES
+from .depth_data import TESTS_DEPTH, TESTS_FOR_RECURSION
+from .objects_data import TESTS_FOR_OBJECTS
+from .standard_data import (
+    TESTS_FOR_DEFAULTDICT,
+    TESTS_FOR_DICT,
+    TESTS_FOR_LIST,
+    TESTS_FOR_SET,
+    TESTS_FOR_STANDARD,
+    TESTS_FOR_TUPLE,
+)
+
+ALL_TESTS = [
+    TESTS_FOR_LIST,
+    TESTS_FOR_STANDARD,
+    TESTS_FOR_DICT,
+    TESTS_FOR_DATACLASSES,
+    TESTS_FOR_OBJECTS,
+    TESTS_FOR_TUPLE,
+    TESTS_FOR_DEFAULTDICT,
+    TESTS_FOR_SET,
+    TESTS_DEPTH,
+    TESTS_FOR_RECURSION,
+]
