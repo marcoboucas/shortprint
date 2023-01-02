@@ -7,7 +7,7 @@ pytest==7.1.2
 coverage==6.4.1
 pytest-cov==3.0.0
 black==22.6.0
-Sphinx==5.0.2
+Sphinx==6.0.0
 sphinx-rtd-theme==1.0.0
 #requests
 #numpy
